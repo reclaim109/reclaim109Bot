@@ -33,7 +33,7 @@ def start(update, context):
 def message_response_handler(update: Update, context: CallbackContext):
     # Creating a handler-function for /start command
     if re.search('goldhorn', update.message.text, re.IGNORECASE):
-        update.message.reply_text('zur Info: http://hundertneun.net/', {"quote": True})
+        update.message.reply_text('zur Info: http://hundertneun.net/')
 
 
 if __name__ == '__main__':
