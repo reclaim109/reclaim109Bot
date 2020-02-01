@@ -43,7 +43,7 @@ if __name__ == '__main__':
     dp = updater.dispatcher
 
     dp.add_handler(CommandHandler("start", start))
-    dp.add_handler(MessageHandler(Filters.text & Filters.channel_post &
+    dp.add_handler(MessageHandler(Filters.text & Filters.update.channel_posts &
                                   Filters.regex(re.compile(r'goldhorn', re.IGNORECASE)),
                                   message_response_handler))
 
