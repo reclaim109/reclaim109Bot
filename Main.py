@@ -32,8 +32,7 @@ def start(update, context):
 
 def message_response_handler(update: Update, context: CallbackContext):
     # Creating a handler-function for /start command
-    if re.search('goldhorn', update.message.text, re.IGNORECASE):
-        update.message.reply_text('zur Info: http://hundertneun.net/')
+    update.message.reply_text('zur Info: http://hundertneun.net/')
 
 
 if __name__ == '__main__':
@@ -44,6 +43,7 @@ if __name__ == '__main__':
     dp = updater.dispatcher
 
     dp.add_handler(CommandHandler("start", start))
-    dp.add_handler(MessageHandler(Filters.text, message_response_handler, filters=Filters.update.channel_posts))
+    dp.add_handler(MessageHandler(Filters.regex(re.compile(r'goldhorn', re.IGNORECASE),
+                                                message_response_handler)))
 
     run(updater)
