@@ -1,6 +1,7 @@
 import logging
 import os
 
+import re
 from telegram import Update
 from telegram.ext import Filters, MessageHandler, Updater, CommandHandler, CallbackContext
 
@@ -31,8 +32,8 @@ def start(update, context):
 
 def message_response_handler(update: Update, context: CallbackContext):
     # Creating a handler-function for /start command
-    if 'Goldhorn' in update.message.text:
-        update.message.reply_text("Hello from Python!\nPress /random to get random number")
+    if re.search('goldhorn', update.message.text, re.IGNORECASE):
+        update.message.reply_text("zur Info: http://hundertneun.net/")
 
 
 if __name__ == '__main__':
