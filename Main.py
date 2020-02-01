@@ -24,14 +24,7 @@ def run(updater):
     updater.bot.set_webhook("https://{}.herokuapp.com/{}".format(heroku_app_name, TOKEN))
 
 
-def start(update, context):
-    """Send a message when the command /start is issued."""
-    logger.info("User {} started bot".format(update.effective_user["first_name"]))
-    update.message.reply_text('http://hundertneun.net/')
-
-
 def message_response_handler(update: Update, context: CallbackContext):
-    # Creating a handler-function for /start command
     update.message.reply_text('zur Info: http://hundertneun.net/')
 
 
@@ -42,8 +35,10 @@ if __name__ == '__main__':
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
 
-    dp.add_handler(CommandHandler("start", start))
-    dp.add_handler(MessageHandler(Filters.text & Filters.update &
+    dp.add_handler(MessageHandler(Filters.text & Filters.group &
+                                  Filters.regex(re.compile(r'goldhorn', re.IGNORECASE)),
+                                  message_response_handler))
+    dp.add_handler(MessageHandler(Filters.text &
                                   Filters.regex(re.compile(r'goldhorn', re.IGNORECASE)),
                                   message_response_handler))
 
