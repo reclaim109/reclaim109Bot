@@ -44,6 +44,6 @@ if __name__ == '__main__':
     dp = updater.dispatcher
 
     dp.add_handler(CommandHandler("start", start))
-    dp.add_handler(MessageHandler(Filters.text, message_response_handler, channel_post_updates=True))
+    dp.add_handler(MessageHandler(Filters.text, message_response_handler, filters=Filters.update.channel_posts))
 
     run(updater)
