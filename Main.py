@@ -35,11 +35,10 @@ if __name__ == '__main__':
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
 
-    dp.add_handler(MessageHandler(Filters.text & Filters.group &
-                                  Filters.regex(re.compile(r'goldhorn', re.IGNORECASE)),
-                                  message_response_handler))
     dp.add_handler(MessageHandler(Filters.text &
-                                  Filters.regex(re.compile(r'goldhorn', re.IGNORECASE)),
+                                  (Filters.regex(re.compile(r'goldhorn', re.IGNORECASE)) | Filters.regex(
+                                      re.compile(r'studio.{0,5}3.?9.?4', re.IGNORECASE)) | Filters.regex(
+                                      re.compile(r'drei.?neun.?vier', re.IGNORECASE))),
                                   message_response_handler))
 
     run(updater)
